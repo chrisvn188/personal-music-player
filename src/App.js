@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { GlobalStyle, Nav, Library, Song } from './components';
+import { GlobalStyle, Nav, Library, Song, Player } from './components';
 import { getSongs } from './data';
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
       <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
       <Library libraryStatus={libraryStatus} />
       <Song currentSong={currentSong} />
+      <Player />
     </div>
   );
 }
