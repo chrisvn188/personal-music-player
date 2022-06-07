@@ -1,8 +1,14 @@
 import styled from 'styled-components';
 
-function LibrarySong({ song, active }) {
+function LibrarySong({ song, active, setCurrentSong, songs, setPlayStatus }) {
+  const playSelectedSong = () => {
+    const currentIndex = songs.findIndex((item) => item.id === song.id);
+    setCurrentSong(songs[currentIndex]);
+    setPlayStatus(true);
+  };
+
   return (
-    <StyledLibrarySong active={active}>
+    <StyledLibrarySong active={active} onClick={playSelectedSong}>
       <img src={song.cover} alt={song.name} />
       <div className='song-info'>
         <h3>{song.name}</h3>

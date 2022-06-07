@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 import LibrarySong from './LibrarySong';
 
-function Library({ libraryStatus, songs, currentSong }) {
+function Library({
+  libraryStatus,
+  songs,
+  currentSong,
+  setCurrentSong,
+  setPlayStatus,
+}) {
   return (
     <StyledLibrary className={libraryStatus ? 'active' : ''}>
       <h2>Library</h2>
@@ -10,6 +16,10 @@ function Library({ libraryStatus, songs, currentSong }) {
           key={song.id}
           song={song}
           active={song.id === currentSong.id}
+          currentSong={currentSong}
+          songs={songs}
+          setCurrentSong={setCurrentSong}
+          setPlayStatus={setPlayStatus}
         />
       ))}
     </StyledLibrary>

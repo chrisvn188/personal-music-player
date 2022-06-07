@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-function Song({ currentSong }) {
+function Song({ currentSong, playStatus }) {
   const { name, artist, cover } = currentSong;
   return (
-    <StyledSong>
+    <StyledSong spinStatus={playStatus}>
       <div className='disk'>
         <img src={cover} alt={name} />
       </div>
@@ -29,6 +29,8 @@ const StyledSong = styled.div`
     width: 12rem;
     height: 12rem;
     border-radius: 50%;
+    animation: spin 5s linear infinite
+      ${(props) => (props.spinStatus ? 'running' : 'paused')};
   }
   h2 {
     color: var(--clr-secondary);
