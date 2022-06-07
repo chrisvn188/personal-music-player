@@ -25,6 +25,11 @@ const StyledNav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
 
   .logo {
     font-size: 1.2rem;
@@ -33,6 +38,7 @@ const StyledNav = styled.nav`
   .toggle-library {
     color: var(--clr-secondary);
     font-size: 0.8rem;
+    cursor: pointer;
   }
 `;
 
