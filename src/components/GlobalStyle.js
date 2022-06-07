@@ -4,6 +4,7 @@ const GlobalStyle = createGlobalStyle`
   :root {
     --clr-primary-1: #271444;
     --clr-primary-2: #391F67;
+    --clr-primary-3: #1A0938;
     --clr-secondary: #23FF66;
     --clr-tertiary: #EEEEEE;
   }
@@ -19,6 +20,8 @@ const GlobalStyle = createGlobalStyle`
     background-color: var(--clr-primary-1);
     color: var(--clr-tertiary);
     line-height: 1.5;
+    min-height:100vh;
+    overflow: hidden;
   }
 
   button{

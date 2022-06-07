@@ -2,11 +2,15 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMusic } from '@fortawesome/free-solid-svg-icons';
 
-function Nav() {
+function Nav({ libraryStatus, setLibraryStatus }) {
+  const toggleLibraryHandler = () => {
+    setLibraryStatus(!libraryStatus);
+  };
+
   return (
     <StyledNav>
       <div className='logo'>WAVES</div>
-      <button className='toggle-library'>
+      <button className='toggle-library' onClick={toggleLibraryHandler}>
         <FontAwesomeIcon icon={faMusic} size='2x' />
       </button>
     </StyledNav>
