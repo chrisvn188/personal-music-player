@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { GlobalStyle, Nav, Library, Song, Player } from './components';
 import { getSongs } from './data';
+import { randomNumberInRange } from './utils';
 
 function App() {
   const audioRef = useRef(null);
@@ -33,6 +34,12 @@ function App() {
     }
   };
 
+  const playRandomSong = () => {
+    const randomIndex = randomNumberInRange(songs.length);
+    setCurrentSong(songs[randomIndex]);
+    setPlayStatus(true);
+  };
+
   return (
     <div className='App'>
       <GlobalStyle />
@@ -52,6 +59,9 @@ function App() {
         currentTime={currentTime}
         duration={duration}
         setCurrentTime={setCurrentTime}
+        setCurrentSong={setCurrentSong}
+        songs={songs}
+        currentSong={currentSong}
       />
       <audio
         ref={audioRef}
@@ -59,6 +69,7 @@ function App() {
         onLoadedMetadata={loadSongDuration}
         onTimeUpdate={updateTime}
         onLoadedData={autoPlaySong}
+        onEnded={playRandomSong}
       />
     </div>
   );

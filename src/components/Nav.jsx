@@ -40,6 +40,11 @@ const StyledNav = styled.nav`
     font-size: 0.8rem;
     cursor: pointer;
   }
+  @media (min-width: 1024px) {
+    width: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 `;
 
 export default Nav;

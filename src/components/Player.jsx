@@ -6,15 +6,18 @@ import {
   faPlay,
   faPause,
 } from '@fortawesome/free-solid-svg-icons';
-import { formatTime } from '../utils';
+import { formatTime, checkIndex } from '../utils';
 
 function Player({
   audioRef,
   playStatus,
   setPlayStatus,
-  currentTime,
   duration,
+  currentTime,
   setCurrentTime,
+  setCurrentSong,
+  songs,
+  currentSong,
 }) {
   const playSongHandler = () => {
     if (playStatus) {
@@ -30,6 +33,22 @@ function Player({
     const timeValue = e.target.value;
     setCurrentTime(timeValue);
     audioRef.current.currentTime = timeValue;
+  };
+
+  const skipSongHandler = (direction) => {
+    const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+
+    if (direction === 'skip-backward') {
+      const prevIndex = checkIndex(songs, currentIndex - 1);
+      setCurrentSong(songs[prevIndex]);
+      setPlayStatus(true);
+    }
+
+    if (direction === 'skip-forward') {
+      const nextIndex = checkIndex(songs, currentIndex + 1);
+      setCurrentSong(songs[nextIndex]);
+      setPlayStatus(true);
+    }
   };
 
   return (
@@ -48,13 +67,21 @@ function Player({
         <div className='end-time'>{formatTime(duration)}</div>
       </div>
       <div className='play-control'>
-        <FontAwesomeIcon className='skip-back' icon={faBackwardStep} />
+        <FontAwesomeIcon
+          className='skip-back'
+          icon={faBackwardStep}
+          onClick={() => skipSongHandler('skip-backward')}
+        />
         <FontAwesomeIcon
           className='play'
           icon={playStatus ? faPause : faPlay}
           onClick={playSongHandler}
         />
-        <FontAwesomeIcon className='skip-forward' icon={faForwardStep} />
+        <FontAwesomeIcon
+          className='skip-forward'
+          icon={faForwardStep}
+          onClick={() => skipSongHandler('skip-forward')}
+        />
       </div>
     </StyledPlayer>
   );
@@ -138,6 +165,12 @@ const StyledPlayer = styled.div`
   }
   svg {
     cursor: pointer;
+  }
+  @media (min-width: 1024px) {
+    width: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2.5rem 2.5rem 0 0;
   }
 `;
 
