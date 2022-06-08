@@ -167,7 +167,7 @@ const StyledPlayer = styled.div`
     cursor: pointer;
   }
   @media (min-width: 1024px) {
-    width: 60%;
+    width: 50%;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 2.5rem 2.5rem 0 0;
